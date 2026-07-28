@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const links = [
   ["Início", "inicio"], ["O casal", "casal"], ["Cerimônia", "cerimonia"],
@@ -34,14 +35,14 @@ export default function Home() {
     </header>
 
     <section id="inicio" className="hero">
-      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=88" alt="Casal em uma cerimônia ao ar livre" />
+      <Image src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=88" alt="Casal em uma cerimônia ao ar livre" fill sizes="100vw" priority />
       <div className="heroShade" />
       <div className="heroContent"><p>Vamos nos casar</p><h1>Priscila <span>&</span> Montanha</h1><div className="line"/><h2>18 • 09 • 2027</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
     </section>
 
     <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Nosso grande dia está chegando</h2><p>Criamos este cantinho para compartilhar com vocês os detalhes da organização do nosso casamento. Estamos muito felizes e contamos com a presença de todos!</p><div className="flourish">❦</div><h3>Contagem regressiva</h3><Countdown /></section>
 
-    <section id="casal" className="split section"><div className="photoStack"><img className="photoMain" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=85" alt="Casal caminhando"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Nos conhecemos quando menos esperávamos e, desde então, descobrimos que a vida fica ainda mais bonita quando compartilhada. Entre risadas, viagens e sonhos, construímos nosso caminho até aqui.</p><p>Agora chegou o momento de celebrar esse amor ao lado das pessoas que fazem parte da nossa história.</p><span className="signature">P & M</span></div></section>
+    <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=85" alt="Casal caminhando" width={1200} height={1500} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Nos conhecemos quando menos esperávamos e, desde então, descobrimos que a vida fica ainda mais bonita quando compartilhada. Entre risadas, viagens e sonhos, construímos nosso caminho até aqui.</p><p>Agora chegou o momento de celebrar esse amor ao lado das pessoas que fazem parte da nossa história.</p><span className="signature">P & M</span></div></section>
 
     <section id="cerimonia" className="event"><div className="eventCard"><p className="eyebrow">O GRANDE DIA</p><h2>Cerimônia & Festa</h2><div className="dateBadge"><span>SETEMBRO</span><strong>18</strong><small>2027</small></div><p>Sábado, às 16 horas</p><h3>Espaço Jardim das Oliveiras</h3><p>Estrada das Flores, 1200<br/>São Paulo — SP</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">VER NO MAPA</a></div></section>
 
@@ -51,7 +52,7 @@ export default function Home() {
 
     <section id="presentes" className="section gifts"><p className="eyebrow">COM CARINHO</p><h2>Lista de presentes</h2><p>O melhor presente é ter você ao nosso lado. Mas, se desejar nos presentear, preparamos algumas sugestões.</p><div className="giftGrid">{[
       ["Jantar romântico na lua de mel","R$ 250"],["Passeio especial para os noivos","R$ 380"],["Café da manhã na cama","R$ 180"]
-    ].map(([name,price],i)=><article key={name}><img src={`https://images.unsplash.com/photo-${["1547592180-85f173990554","1500530855697-b586d89ba3ee","1493770348161-369560ae357d"][i]}?auto=format&fit=crop&w=700&q=80`} alt="Sugestão de presente"/><div><h3>{name}</h3><p>{price}</p><button>PRESENTEAR</button></div></article>)}</div></section>
+    ].map(([name,price],i)=><article key={name}><Image src={`https://images.unsplash.com/photo-${["1547592180-85f173990554","1500530855697-b586d89ba3ee","1493770348161-369560ae357d"][i]}?auto=format&fit=crop&w=700&q=80`} alt="Sugestão de presente" width={700} height={500} sizes="(max-width: 900px) 86vw, 29vw"/><div><h3>{name}</h3><p>{price}</p><button>PRESENTEAR</button></div></article>)}</div></section>
 
     <section id="recados" className="messages"><div className="section"><p className="eyebrow">DEIXE SEU CARINHO</p><h2>Recados para os noivos</h2><form onSubmit={(e)=>{e.preventDefault();setSent("Seu recado foi enviado com carinho ♡");}}><input required placeholder="Seu nome"/><textarea required placeholder="Escreva uma mensagem para o casal" rows={4}/><button>ENVIAR RECADO</button>{sent && <p className="success">{sent}</p>}</form><div className="notes"><blockquote>“Que essa nova etapa seja repleta de amor e cumplicidade. Estamos contando os dias!”<cite>— Família e amigos</cite></blockquote><blockquote>“Desejamos uma vida inteira de aventuras, risadas e muito amor.”<cite>— Convidados especiais</cite></blockquote></div></div></section>
 
