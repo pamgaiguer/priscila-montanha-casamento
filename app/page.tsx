@@ -37,6 +37,17 @@ const giftItems = [
   { id: 25, image: "/gifts/bass-strings-kit.png", name: "Kit de cordas pro baixo do noivo (senão ele não trabalha)", price: 18967 },
   { id: 26, image: "/gifts/anime-weekend-pass.png", name: "Vale fim de semana pra noiva ir à Anime Friends e/ou CCXP em SP", price: 124790 },
   { id: 27, image: "/gifts/pepsi-zero-stock.png", name: "TODO o estoque de Pepsi Zero de todos os atacados da região", price: 9990 },
+  { id: 28, image: "/gifts/suspicious-women-manual.png", name: "Manual de reconhecimento de mulheres duvidosas", price: 7490 },
+  { id: 29, image: "/gifts/dinnerware-set.png", name: "Jogo de pratos para a casa nova", price: 34990 },
+  { id: 30, image: "/gifts/flatware-set.jpg", name: "Faqueiro", price: 5900 },
+  { id: 31, image: "/gifts/bedding-set.jpg", name: "Jogo de cama", price: 15900 },
+  { id: 32, image: "/gifts/electric-kettle.jpg", name: "Chaleira elétrica", price: 18500 },
+  { id: 33, image: "/gifts/glassware-set.jpg", name: "Jogo de taças", price: 23800 },
+  { id: 34, image: "/gifts/blender.jpg", name: "Liquidificador", price: 12800 },
+  { id: 35, image: "/gifts/electric-cooker.jpg", name: "Panela elétrica", price: 28000 },
+  { id: 36, image: "/gifts/steam-iron.jpg", name: "Ferro a vapor", price: 9900 },
+  { id: 37, image: "/gifts/spin-mop.jpg", name: "Mop giratório", price: 9900 },
+  { id: 38, image: "/gifts/bath-towel-set.jpg", name: "Jogo de toalhas de banho", price: 14990 },
 ];
 
 const money = (cents: number) =>
@@ -44,6 +55,19 @@ const money = (cents: number) =>
 
 const giftImage = (image: string, width: number, quality: number) =>
   image.startsWith("/") ? image : `https://images.unsplash.com/${image}?auto=format&fit=crop&w=${width}&q=${quality}`;
+
+const familyPhotos = [
+  { src: "/photos/DSC_5456.jpg", alt: "Priscila, Montanha e a família reunidos" },
+  { src: "/photos/DSC_5398.jpg", alt: "Retrato da filha com seu instrumento" },
+  { src: "/photos/DSC_5523.jpg", alt: "Montanha e a filha em um momento divertido" },
+  { src: "/photos/DSC_5555.jpg", alt: "Retrato da família em preto e branco" },
+  { src: "/photos/DSC_5483.jpg", alt: "Priscila e Montanha com o baixo" },
+  { src: "/photos/DSC_5759.jpg", alt: "Priscila e Montanha dançando" },
+];
+
+function FamilySlider() {
+  return <aside className="familySlider" aria-label="Fotos da família"><div className="familySliderHeading"><span>NOSSA FAMÍLIA</span><strong>Quem faz parte da nossa história</strong></div><div className="familySliderViewport"><div className="familySliderTrack">{[false, true].map((duplicate) => <div className="familySliderGroup" key={String(duplicate)} aria-hidden={duplicate}>{familyPhotos.map((photo) => <div className="familyPhoto" key={`${duplicate}-${photo.src}`}><Image src={photo.src} alt={duplicate ? "" : photo.alt} width={480} height={720} sizes="(max-width: 650px) 58vw, 240px" /></div>)}</div>)}</div></div></aside>;
+}
 
 function Countdown() {
   const wedding = new Date("2027-09-18T16:00:00").getTime();
@@ -69,6 +93,9 @@ export default function Home() {
   const selectedGifts = giftItems.filter((gift) => cart.includes(gift.id));
   const cartTotal = selectedGifts.reduce((total, gift) => total + gift.price, 0);
   const orderedGifts = [...giftItems].sort((a, b) => giftOrder === "highest" ? b.price - a.price : giftOrder === "lowest" ? a.price - b.price : a.id - b.id);
+  const practicalGifts = orderedGifts.filter((gift) => gift.id >= 29);
+  const playfulGifts = orderedGifts.filter((gift) => gift.id < 29);
+  const renderGift = (gift: (typeof giftItems)[number]) => <article key={gift.id} className={cart.includes(gift.id) ? "selected" : ""}><div className="giftArt"><Image src={giftImage(gift.image, 700, 80)} alt={gift.name} width={700} height={500} sizes="(max-width: 700px) 86vw, (max-width: 1100px) 42vw, 22vw"/><small>P &amp; M</small></div><div className="giftBody"><h3>{gift.name}</h3><p>{money(gift.price)}</p><button onClick={() => toggleGift(gift.id)}>{cart.includes(gift.id) ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</button></div></article>;
 
   return <main>
     <header className="nav">
@@ -78,18 +105,18 @@ export default function Home() {
     </header>
 
     <section id="inicio" className="hero">
-      <Image src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=88" alt="Casal em uma cerimônia ao ar livre" fill sizes="100vw" priority />
+      <Image src="/photos/site-hero-v2.jpg" alt="Priscila e Montanha juntos no ensaio" fill sizes="100vw" priority />
       <div className="heroShade" />
       <div className="heroContent"><p>Vamos nos casar</p><h1>Priscila <span>&</span> Montanha</h1><div className="line"/><h2>18 • 09 • 2027</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
     </section>
 
     <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Um novo capítulo da nossa história</h2><p>Depois de 5 anos vivendo intensamente cada momento juntos, chegou a hora de oficializar nossa história! Decidimos dar um passo importante: morar juntos e realizar nossa união no civil.</p><p>E, para celebrar essa nova fase, queremos reunir as pessoas que amamos para uma costelada especial de boas-vindas à nossa casa nova.</p><p>Criamos este site para reunir todas as informações importantes e, para quem desejar nos ajudar no chá da casa nova, também deixamos uma lista de presentes.</p><p>Acreditamos que um lar não é construído apenas por paredes e móveis, mas também pelo carinho de quem faz parte da nossa história. Por isso, cada presente simboliza um pedacinho desse novo começo e será uma lembrança de que vocês fizeram parte dos primeiros capítulos da nossa vida nesta casa.</p><p>O maior presente de todos, porém, será celebrar esse momento ao lado de vocês. Esperamos vocês com o coração cheio de alegria!</p><div className="flourish">❦</div><h3>Contagem regressiva</h3><Countdown /></section>
 
-    <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1200&q=85" alt="Casal caminhando" width={1200} height={1500} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P & M</span></div></section>
+    <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="/photos/site-story.jpg" alt="Priscila e Montanha juntos" width={1200} height={1800} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P & M</span></div></section>
 
     <section id="cerimonia" className="event"><div className="eventCard"><p className="eyebrow">O GRANDE DIA</p><h2>Cerimônia & Festa</h2><div className="dateBadge"><span>SETEMBRO</span><strong>18</strong><small>2027</small></div><p>Sábado, às 16 horas</p><h3>Espaço Jardim das Oliveiras</h3><p>Estrada das Flores, 1200<br/>São Paulo — SP</p><a href="https://maps.google.com" target="_blank" rel="noreferrer">VER NO MAPA</a></div></section>
 
-    <section id="presentes" className="giftsBand"><div className="section gifts"><p className="eyebrow">COM CARINHO</p><h2>Lista de presentes</h2><p>O melhor presente é ter você ao nosso lado. Se quiser contribuir, escolha uma ou mais das nossas sugestões bem-humoradas.</p><div className="giftNotice"><strong>Presentes simbólicos</strong><span>Os itens abaixo são fictícios e os valores representam contribuições financeiras aos noivos.</span></div><div className="giftToolbar"><div><label htmlFor="gift-order">Ordenar por</label><select id="gift-order" value={giftOrder} onChange={(event) => setGiftOrder(event.target.value)}><option value="default">Nossa seleção</option><option value="highest">Maior preço</option><option value="lowest">Menor preço</option></select></div></div><div className="giftGrid">{orderedGifts.map((gift)=><article key={gift.id} className={cart.includes(gift.id) ? "selected" : ""}><div className="giftArt"><Image src={giftImage(gift.image, 700, 80)} alt={gift.name} width={700} height={500} sizes="(max-width: 700px) 86vw, (max-width: 1100px) 42vw, 22vw"/><small>P &amp; M</small></div><div className="giftBody"><h3>{gift.name}</h3><p>{money(gift.price)}</p><button onClick={() => toggleGift(gift.id)}>{cart.includes(gift.id) ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</button></div></article>)}</div></div></section>
+    <section id="presentes" className="giftsBand"><div className="section gifts"><p className="eyebrow">COM CARINHO</p><h2>Lista de presentes</h2><p>O melhor presente é ter você ao nosso lado. Se quiser contribuir, escolha uma ou mais das nossas sugestões.</p><div className="giftNotice"><strong>Presentes simbólicos</strong><span>Os itens abaixo são simbólicos e os valores representam contribuições financeiras aos noivos.</span></div><div className="giftToolbar"><div><label htmlFor="gift-order">Ordenar por</label><select id="gift-order" value={giftOrder} onChange={(event) => setGiftOrder(event.target.value)}><option value="default">Nossa seleção</option><option value="highest">Maior preço</option><option value="lowest">Menor preço</option></select></div></div><div className="giftGrid"><header className="giftGroupHeading"><span>PARA O NOVO LAR</span><h3>Presentes para a casa nova</h3><p>Opções clássicas para quem prefere presentear de um jeito mais tradicional.</p></header>{practicalGifts.map(renderGift)}<FamilySlider /><header className="giftGroupHeading giftGroupHeadingPlayful"><span>COM A CARA DOS NOIVOS</span><h3>Presentes selecionados ESPECIALMENTE para o casal </h3><p>Contribuições simbólicas escolhidas com carinho e uma pitada do nosso bom humor.</p></header>{playfulGifts.map(renderGift)}</div></div></section>
 
     <section id="dicas" className="section tips"><p className="eyebrow">PARA VOCÊS</p><h2>Dicas importantes</h2><div className="cards"><article><span>⌂</span><h3>Onde ficar</h3><p>Selecionamos algumas opções de hospedagem próximas ao local.</p><button>VER SUGESTÕES</button></article><article><span>♧</span><h3>Trajes</h3><p>O estilo da celebração será esporte fino. Venha confortável para festejar!</p><button>SAIBA MAIS</button></article><article><span>✦</span><h3>Salão de beleza</h3><p>Confira nossas indicações para se preparar com tranquilidade.</p><button>VER INDICAÇÕES</button></article></div></section>
 
