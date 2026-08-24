@@ -1,6 +1,7 @@
 export const MIN_PLAYFUL_GIFT_PRICE = 7500;
 export const MIN_TEST_GIFT_PRICE = 50;
 export const TEST_GIFT_IDS = [39, 40] as const;
+export const TEST_CHECKOUT_ENABLED = false;
 
 export const giftItems = [
   { id: 1, kind: "symbolic", image: "photo-1542766788-a2f588f447ee", name: "Ajude os noivos a continuarem fitness", price: 23821 },

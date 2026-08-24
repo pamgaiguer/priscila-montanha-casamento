@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 
 import { createContribution, markPreferenceCreated, markPreferenceFailed } from "@/lib/contributions";
-import { giftItems, isRealGift, isTestGift, MIN_PLAYFUL_GIFT_PRICE, MIN_TEST_GIFT_PRICE } from "@/lib/gifts";
+import { giftItems, isRealGift, isTestGift, MIN_PLAYFUL_GIFT_PRICE, MIN_TEST_GIFT_PRICE, TEST_CHECKOUT_ENABLED } from "@/lib/gifts";
 import { getMercadoPagoPreference } from "@/lib/mercado-pago";
 
 export const runtime = "nodejs";
@@ -31,6 +31,9 @@ export async function POST(request: Request) {
     const gifts = uniqueIds.map((id) => giftItems.find((gift) => gift.id === id));
     if (gifts.some((gift) => !gift)) {
       return NextResponse.json({ error: "Um dos presentes não existe." }, { status: 400 });
+    }
+    if (!TEST_CHECKOUT_ENABLED && gifts.some((gift) => isTestGift(gift!.id))) {
+      return NextResponse.json({ error: "Este presente não está disponível." }, { status: 400 });
     }
 
     const amounts = giftAmounts && typeof giftAmounts === "object"
