@@ -9,9 +9,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "env:test": "node scripts/use-env.mjs test",
+    "env:production": "node scripts/use-env.mjs production"
   },
   "dependencies": {
+    "firebase-admin": "^14.3.0",
+    "mercadopago": "^3.4.0",
     "next": "16.2.6",
     "react": "19.2.6",
     "react-dom": "19.2.6"
