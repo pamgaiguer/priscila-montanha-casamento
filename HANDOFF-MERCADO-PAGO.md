@@ -1,6 +1,6 @@
 # Handoff — Checkout Mercado Pago
 
-Status: **código pronto e validado localmente. Falta configurar credenciais de produção e publicar.**
+Status: **código pronto e validado localmente; credenciais expostas já rotacionadas. Falta configurar o ambiente de produção (`.env.montanha.local`, Vercel, webhook) e publicar.**
 
 ## O que já existe (implementado)
 
@@ -34,21 +34,21 @@ Com um Access Token de **produção** do Mercado Pago (não havia credencial de 
 
 Essas mudanças estão **commitadas apenas localmente** (não commitadas ainda) — ver `git status` / `git diff` antes de prosseguir.
 
-## ⚠️ Credenciais que precisam ser rotacionadas antes de produção
+## ✅ Credenciais rotacionadas
 
-Durante a configuração, as seguintes credenciais **passaram pelo chat de um assistente de IA** e devem ser tratadas como potencialmente expostas — **gerar novas antes de usar em produção**:
+As credenciais que haviam passado pelo chat de um assistente de IA durante a configuração (e por isso tratadas como potencialmente expostas) já foram rotacionadas:
 
-- `MERCADO_PAGO_ACCESS_TOKEN` de produção (o que foi usado no teste, prefixo `APP_USR-...`).
-- `MERCADO_PAGO_WEBHOOK_SECRET` (assinatura usada no teste).
-- Chave de conta de serviço do Firebase Admin SDK (`FIREBASE_SERVICE_ACCOUNT_JSON`) — **atenção**: o usuário reportou ter revogado a chave original no Firebase Console, mas o `private_key_id` usado no teste (`659e066e23ec9e073f98be1333c678ab817e2c35`) bateu com o da chave supostamente revogada. **Confirmar no Firebase Console → Configurações do projeto → Contas de serviço se essa chave está de fato revogada, e gerar uma definitivamente nova antes de ir ao ar.**
+- `MERCADO_PAGO_ACCESS_TOKEN` de produção — novo token gerado, antigo invalidado.
+- `MERCADO_PAGO_WEBHOOK_SECRET` — nova assinatura gerada no painel do Mercado Pago.
+- Chave de conta de serviço do Firebase Admin SDK (`FIREBASE_SERVICE_ACCOUNT_JSON`) — confirmada/rotacionada no Firebase Console.
 
-O arquivo `.env.pam-test.local` (perfil de teste, ignorado pelo git) ainda contém essas credenciais antigas — foi mantido no projeto pra não perder a configuração de teste, mas **precisa ser atualizado com credenciais novas** antes de reutilizar.
+⚠️ **Atenção**: o arquivo `.env.pam-test.local` (perfil de teste, ignorado pelo git) ainda contém os valores **antigos** (agora inválidos) dessas credenciais — ele não foi atualizado automaticamente com a rotação. Antes de rodar `npm run env:test` de novo, atualize esse arquivo com os valores novos, senão o checkout/webhook local vai falhar por autenticação inválida.
 
 ## Passo a passo para concluir
 
-1. **Rotacionar as 3 credenciais acima** (gerar novas, invalidando as antigas).
-2. Atualizar `.env.pam-test.local` com as credenciais de teste rotacionadas (se for continuar testando em sandbox/local).
-3. Criar `.env.montanha.local` com as credenciais de produção:
+1. ~~Rotacionar as 3 credenciais~~ ✅ feito — ver seção acima.
+2. Atualizar `.env.pam-test.local` com os valores novos das credenciais rotacionadas (necessário pra continuar testando em local — hoje o arquivo ainda tem os valores antigos/inválidos).
+3. Criar `.env.montanha.local` com as credenciais de produção (as mesmas já rotacionadas):
    ```
    MERCADO_PAGO_ACCESS_TOKEN=<token de produção>
    MERCADO_PAGO_WEBHOOK_SECRET=<assinatura do webhook de produção>
