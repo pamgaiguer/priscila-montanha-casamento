@@ -10,6 +10,9 @@ export const runtime = "nodejs";
 function siteUrl(request: Request) {
   const configured = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
   if (configured) return configured;
+  if (process.env.APP_ENV === "production") {
+    throw new Error("A variável de ambiente NEXT_PUBLIC_SITE_URL não foi configurada.");
+  }
   return new URL(request.url).origin;
 }
 
@@ -83,8 +86,7 @@ export async function POST(request: Request) {
             pending: `${baseUrl}/pagamento?status=pending`,
             failure: `${baseUrl}/pagamento?status=failure`,
           },
-          auto_return: "approved",
-          ...(isPublicHttps ? { notification_url: `${baseUrl}/api/webhooks/mercado-pago` } : {}),
+          ...(isPublicHttps ? { auto_return: "approved" as const, notification_url: `${baseUrl}/api/webhooks/mercado-pago` } : {}),
           metadata: { gift_ids: uniqueIds.join(",") },
         },
         requestOptions: { idempotencyKey: reference },
