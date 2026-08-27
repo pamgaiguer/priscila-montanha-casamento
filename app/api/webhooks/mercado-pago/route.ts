@@ -8,7 +8,10 @@ export const runtime = "nodejs";
 
 function validSignature(request: Request, dataId: string) {
   const secret = process.env.MERCADO_PAGO_WEBHOOK_SECRET;
-  if (!secret) return true;
+  if (!secret) {
+    console.error("MERCADO_PAGO_WEBHOOK_SECRET não configurada — rejeitando notificação.");
+    return false;
+  }
 
   const signature = request.headers.get("x-signature") ?? "";
   const requestId = request.headers.get("x-request-id") ?? "";
