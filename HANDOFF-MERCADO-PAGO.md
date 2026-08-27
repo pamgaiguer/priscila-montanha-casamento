@@ -42,12 +42,12 @@ As credenciais que haviam passado pelo chat de um assistente de IA durante a con
 - `MERCADO_PAGO_WEBHOOK_SECRET` — nova assinatura gerada no painel do Mercado Pago.
 - Chave de conta de serviço do Firebase Admin SDK (`FIREBASE_SERVICE_ACCOUNT_JSON`) — confirmada/rotacionada no Firebase Console.
 
-⚠️ **Atenção**: o arquivo `.env.pam-test.local` (perfil de teste, ignorado pelo git) ainda contém os valores **antigos** (agora inválidos) dessas credenciais — ele não foi atualizado automaticamente com a rotação. Antes de rodar `npm run env:test` de novo, atualize esse arquivo com os valores novos, senão o checkout/webhook local vai falhar por autenticação inválida.
+Os arquivos `.env.local` e `.env.pam-test.local` usados durante o teste foram apagados propositalmente (continham as credenciais antigas expostas). **Não existe nenhum `.env*` no projeto agora** — o próximo passo exige criar `.env.pam-test.local` (perfil de teste) e/ou `.env.montanha.local` (perfil de produção) do zero, com os valores novos já rotacionados. Nenhum dos dois é versionado no git (ver `.gitignore`).
 
 ## Passo a passo para concluir
 
 1. ~~Rotacionar as 3 credenciais~~ ✅ feito — ver seção acima.
-2. Atualizar `.env.pam-test.local` com os valores novos das credenciais rotacionadas (necessário pra continuar testando em local — hoje o arquivo ainda tem os valores antigos/inválidos).
+2. (Opcional) Recriar `.env.pam-test.local` com os valores novos das credenciais rotacionadas, caso precise testar em local de novo — veja o formato esperado em `scripts/use-env.mjs`.
 3. Criar `.env.montanha.local` com as credenciais de produção (as mesmas já rotacionadas):
    ```
    MERCADO_PAGO_ACCESS_TOKEN=<token de produção>
