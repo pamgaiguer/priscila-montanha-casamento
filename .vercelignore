@@ -1,0 +1,6 @@
+.next
+node_modules
+.git
+.env*
+firebase-service-account.json
+HANDOFF-MERCADO-PAGO.md
