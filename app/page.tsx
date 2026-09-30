@@ -17,12 +17,12 @@ const giftImage = (image: string, width: number, quality: number) =>
   image.startsWith("/") ? image : `https://images.unsplash.com/${image}?auto=format&fit=crop&w=${width}&q=${quality}`;
 
 const familyPhotos = [
-  { src: "/photos/DSC_5456.jpg", alt: "Priscila, Montanha e a família reunidos" },
+  { src: "/photos/DSC_5456.jpg", alt: "Priscila, Renato e a família reunidos" },
   { src: "/photos/DSC_5398.jpg", alt: "Retrato da filha com seu instrumento" },
-  { src: "/photos/DSC_5523.jpg", alt: "Montanha e a filha em um momento divertido" },
+  { src: "/photos/DSC_5523.jpg", alt: "Renato e a filha em um momento divertido" },
   { src: "/photos/DSC_5555.jpg", alt: "Retrato da família em preto e branco" },
-  { src: "/photos/DSC_5483.jpg", alt: "Priscila e Montanha com o baixo" },
-  { src: "/photos/DSC_5759.jpg", alt: "Priscila e Montanha dançando" },
+  { src: "/photos/DSC_5483.jpg", alt: "Priscila e Renato com o baixo" },
+  { src: "/photos/DSC_5759.jpg", alt: "Priscila e Renato dançando" },
 ];
 
 function FamilySlider() {
@@ -30,7 +30,7 @@ function FamilySlider() {
 }
 
 function Countdown() {
-  const wedding = new Date("2026-10-03T16:00:00-03:00").getTime();
+  const wedding = new Date("2026-11-01T16:00:00-03:00").getTime();
   const [parts, setParts] = useState([0, 0, 0, 0]);
   useEffect(() => {
     const tick = () => {
@@ -92,22 +92,22 @@ export default function Home() {
       setCheckoutLoading(false);
     }
   };
-  const renderGift = (gift: (typeof giftItems)[number]) => <article key={gift.id} className={cart.includes(gift.id) ? "selected" : ""}><div className={`giftArt${gift.image ? "" : " giftArtPlaceholder"}`}>{gift.image ? <Image src={giftImage(gift.image, 700, 80)} alt={gift.name} width={700} height={500} sizes="(max-width: 700px) 86vw, (max-width: 1100px) 42vw, 22vw"/> : <b>TESTE<br/>PIX</b>}<small>P &amp; M</small></div><div className="giftBody"><h3>{gift.name}</h3><p>{isRealGift(gift.id) && !isTestGift(gift.id) ? money(gift.price) : <>Valor sugerido: {money(giftPrice(gift))}<small>{isTestGift(gift.id) ? "Presente temporário de teste — mínimo R$ 0,50" : "Este valor é simbólico — ajuste como preferir, respeitando o mínimo de R$ 75,00."}</small></>}</p><button onClick={() => toggleGift(gift.id)}>{cart.includes(gift.id) ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</button></div></article>;
+  const renderGift = (gift: (typeof giftItems)[number]) => <article key={gift.id} className={cart.includes(gift.id) ? "selected" : ""}><div className={`giftArt${gift.image ? "" : " giftArtPlaceholder"}`}>{gift.image ? <Image src={giftImage(gift.image, 700, 80)} alt={gift.name} width={700} height={500} sizes="(max-width: 700px) 86vw, (max-width: 1100px) 42vw, 22vw"/> : <b>TESTE<br/>PIX</b>}<small>P &amp; R</small></div><div className="giftBody"><h3>{gift.name}</h3><p>{isRealGift(gift.id) && !isTestGift(gift.id) ? money(gift.price) : <>Valor sugerido: {money(giftPrice(gift))}<small>{isTestGift(gift.id) ? "Presente temporário de teste — mínimo R$ 0,50" : "Este valor é simbólico — ajuste como preferir, respeitando o mínimo de R$ 75,00."}</small></>}</p><button onClick={() => toggleGift(gift.id)}>{cart.includes(gift.id) ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</button></div></article>;
 
   return <main>
     <header className="nav">
-      <button className="brand" onClick={() => go("inicio")}>P <i>&</i> M</button>
+      <button className="brand" onClick={() => go("inicio")}>P <i>&</i> R</button>
       <button className="menuButton" aria-label="Abrir menu" onClick={() => setOpen(!open)}>{open ? "×" : "☰"}</button>
       <nav className={open ? "open" : ""}>{links.map(([label,id]) => <button key={id} onClick={() => go(id)}>{label}</button>)}</nav>
     </header>
 
     <section id="inicio" className="hero">
-      <Image src="/photos/site-hero-v2.jpg" alt="Priscila e Montanha juntos no ensaio" fill sizes="100vw" priority />
+      <Image src="/photos/site-hero-v2.jpg" alt="Priscila e Renato juntos no ensaio" fill sizes="100vw" priority />
       <div className="heroShade" />
-      <div className="heroContent"><p>Chá da Casa Nova</p><h1>Priscila <span>&</span> Montanha</h1><div className="line"/><h2>03 • 10 • 2026</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
+      <div className="heroContent"><p>Chá da Casa Nova</p><h1>Priscila <span>&</span> Renato</h1><div className="line"/><h2>01 • 11 • 2026</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
     </section>
 
-    <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Um novo capítulo da nossa história</h2><p>Depois de 5 anos vivendo intensamente cada momento juntos, chegou a hora de oficializar nossa história! Decidimos dar um passo importante: morar juntos e realizar nossa união no civil.</p><p>E, para celebrar essa nova fase, queremos reunir as pessoas que amamos para uma costelada especial de boas-vindas à nossa casa nova.</p>
+    <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Um novo capítulo da nossa história</h2>
     <p>Depois de 5 anos juntos, chegou a hora de construir nosso novo lar! Para celebrar essa nova fase, faremos um chá da casa nova.</p>
     <br/>
     <p>Criamos este site para reunir informações importantes e, para quem desejar nos ajudar no chá da casa nova, deixamos uma lista de presentes aqui.</p>
@@ -115,10 +115,10 @@ export default function Home() {
     <p>O maior presente de todos, porém, será celebrar esse momento ao lado de vocês em uma deliciosa noite de massas. Esperamos vocês com o coração cheio de alegria!</p>
     <div className="flourish">❦</div><h3>Contagem regressiva</h3><Countdown /></section>
 
-    <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="/photos/site-story.jpg" alt="Priscila e Montanha juntos" width={1200} height={1800} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P & M</span></div></section>
+    <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="/photos/site-story.jpg" alt="Priscila e Renato juntos" width={1200} height={1800} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P &amp; R</span></div></section>
 
     <section id="chadacasanova" className="event"><div className="eventCard"><p className="eyebrow">O GRANDE DIA</p><h2>Chá da casa nova</h2>
-    <div className="dateBadge"><span>OUTUBRO</span><strong>03</strong><small>2026</small></div><h3>Sábado, às 18 horas</h3>
+    <div className="dateBadge"><span>NOVEMBRO</span><strong>01</strong><small>2026</small></div><h3>Sábado, às 18 horas</h3>
     <p>Rua Raul de Carvalho, 1148 - Boa Vista<br/>São José do Rio Preto - SP</p>
     <a href="https://maps.app.goo.gl/7bSQhZm7s8hqoEPX6" target="_blank" rel="noreferrer">VER NO MAPA</a></div></section>
 
@@ -134,6 +134,6 @@ export default function Home() {
 
     {/* <section id="recados" className="messages"><div className="section"><p className="eyebrow">DEIXE SEU CARINHO</p><h2>Recados para os noivos</h2><form onSubmit={(e)=>{e.preventDefault();setSent("Seu recado foi enviado com carinho ♡");}}><input required placeholder="Seu nome"/><textarea required placeholder="Escreva uma mensagem para o casal" rows={4}/><button>ENVIAR RECADO</button>{sent && <p className="success">{sent}</p>}</form><div className="notes"><blockquote>“Que essa nova etapa seja repleta de amor e cumplicidade. Estamos contando os dias!”<cite>— Família e amigos</cite></blockquote><blockquote>“Desejamos uma vida inteira de aventuras, risadas e muito amor.”<cite>— Convidados especiais</cite></blockquote></div></div></section> */}
 
-    <footer><div className="monogram">P <i>&</i> M</div><p>03 • 10 • 2026</p><small>Feito com amor para celebrar uma história inesquecível.</small><button onClick={() => go("inicio")}>↑</button></footer>
+    <footer><div className="monogram">P <i>&amp;</i> R</div><p>01 • 11 • 2026</p><small>Feito com amor para celebrar uma história inesquecível.</small><button onClick={() => go("inicio")}>↑</button></footer>
   </main>;
 }
