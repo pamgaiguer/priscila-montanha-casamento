@@ -1,7 +1,7 @@
 export const MIN_PLAYFUL_GIFT_PRICE = 7500;
 export const MIN_TEST_GIFT_PRICE = 50;
 export const TEST_GIFT_IDS = [39, 40] as const;
-export const TEST_CHECKOUT_ENABLED = false;
+export const TEST_CHECKOUT_ENABLED = true;
 
 export const giftItems = [
   { id: 1, kind: "symbolic", image: "photo-1542766788-a2f588f447ee", name: "Ajude os noivos a continuarem fitness", price: 23821 },
@@ -42,8 +42,8 @@ export const giftItems = [
   { id: 36, kind: "real", image: "/gifts/steam-iron.jpg", name: "Ferro a vapor", price: 9900 },
   { id: 37, kind: "real", image: "/gifts/spin-mop.jpg", name: "Mop giratório", price: 9900 },
   { id: 38, kind: "real", image: "/gifts/bath-towel-set.jpg", name: "Jogo de toalhas de banho", price: 14990 },
-  { id: 39, kind: "symbolic", image: null, name: "Pam Testando se deu certo", price: 50 },
-  { id: 40, kind: "symbolic", image: null, name: "Pam Testando o webhook", price: 50 },
+  // { id: 39, kind: "symbolic", image: null, name: "Pam Testando se deu certo", price: 50 },
+  // { id: 40, kind: "symbolic", image: null, name: "Pam Testando o webhook", price: 50 },
 ] as const;
 
 export const isRealGift = (id: number) => giftItems.some((gift) => gift.id === id && gift.kind === "real");
