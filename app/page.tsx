@@ -108,11 +108,10 @@ export default function Home() {
     </section>
 
     <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Um novo capítulo da nossa história</h2>
-    <p>Depois de 5 anos juntos, chegou a hora de construir nosso novo lar! Para celebrar essa nova fase, faremos um chá da casa nova.</p>
+    <p>Depois de 5 anos juntos, chegou a hora de cultivar nosso novo lar!</p>
     <br/>
-    <p>Criamos este site para reunir informações importantes e, para quem desejar nos ajudar no chá da casa nova, deixamos uma lista de presentes aqui.</p>
-    <p>Acreditamos que um lar não é construído apenas por paredes e móveis, mas também pelo carinho de quem faz parte da nossa história. Por isso, cada presente simboliza um pedacinho desse novo começo e será uma lembrança de que vocês fizeram parte dos primeiros capítulos da nossa vida nesta casa.</p>
-    <p>O maior presente de todos, porém, será celebrar esse momento ao lado de vocês em uma deliciosa noite de massas. Esperamos vocês com o coração cheio de alegria!</p>
+    <p>Criamos este site para compartilhar os detalhes do nosso chá da casa nova e nossa lista de presentes, preparada com carinho e bom humor para nos ajudar a equipar ainda mais nosso cantinho. 🤍</p>
+    <p>Estamos felizes em compartilhar esse novo começo com vocês e esperamos celebrar juntos essa noite especial! ✨</p>
     <div className="flourish">❦</div><h3>Contagem regressiva</h3><Countdown /></section>
 
     <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="/photos/site-story.jpg" alt="Priscila e Renato juntos" width={1200} height={1800} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P &amp; R</span></div></section>
