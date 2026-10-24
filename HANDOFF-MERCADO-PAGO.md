@@ -14,7 +14,7 @@ Status: **código pronto e validado localmente; credenciais expostas já rotacio
 | Página de retorno do pagamento | `app/pagamento/page.tsx` |
 | Fluxo de carrinho/checkout no front | `app/page.tsx` |
 
-Presentes "reais" (`kind: "real"`) têm preço fixo. Presentes "simbólicos" têm valor livre com mínimo de R$ 75,00 (`MIN_PLAYFUL_GIFT_PRICE`). Existem 2 presentes de teste (`id 39` e `40`, R$ 0,50 mínimo) escondidos por trás da flag `TEST_CHECKOUT_ENABLED` em `lib/gifts.ts` — **hoje está `false`** (correto para produção).
+Presentes "reais" (`kind: "real"`) têm preço fixo. Presentes "simbólicos" têm valor livre com mínimo de R$ 45,00 (`MIN_PLAYFUL_GIFT_PRICE`). Existem 2 presentes de teste (`id 39` e `40`, R$ 0,50 mínimo) escondidos por trás da flag `TEST_CHECKOUT_ENABLED` em `lib/gifts.ts` — **hoje está `false`** (correto para produção).
 
 ## O que foi validado (teste ponta a ponta, ambiente local)
 
