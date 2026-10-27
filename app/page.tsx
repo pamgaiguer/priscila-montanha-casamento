@@ -26,7 +26,7 @@ const familyPhotos = [
 ];
 
 function FamilySlider() {
-  return <aside className="familySlider" aria-label="Fotos da família"><div className="familySliderHeading"><span>NOSSA FAMÍLIA</span><strong>Quem faz parte da nossa história</strong></div><div className="familySliderViewport"><div className="familySliderTrack">{[false, true].map((duplicate) => <div className="familySliderGroup" key={String(duplicate)} aria-hidden={duplicate}>{familyPhotos.map((photo) => <div className="familyPhoto" key={`${duplicate}-${photo.src}`}><Image src={photo.src} alt={duplicate ? "" : photo.alt} width={480} height={720} sizes="(max-width: 650px) 58vw, 240px" /></div>)}</div>)}</div></div></aside>;
+  return <aside className="familySlider" aria-label="Fotos da família"><div className="familySliderHeading"><span>NOSSA FAMÍLIA</span><strong>NOSSO TESOURO</strong></div><div className="familySliderViewport"><div className="familySliderTrack">{[false, true].map((duplicate) => <div className="familySliderGroup" key={String(duplicate)} aria-hidden={duplicate}>{familyPhotos.map((photo) => <div className="familyPhoto" key={`${duplicate}-${photo.src}`}><Image src={photo.src} alt={duplicate ? "" : photo.alt} width={480} height={720} sizes="(max-width: 650px) 58vw, 240px" /></div>)}</div>)}</div></div></aside>;
 }
 
 function Countdown() {
