@@ -30,7 +30,7 @@ function FamilySlider() {
 }
 
 function Countdown() {
-  const wedding = new Date("2026-11-01T16:00:00-03:00").getTime();
+  const wedding = new Date("2026-12-05T16:00:00-03:00").getTime();
   const [parts, setParts] = useState([0, 0, 0, 0]);
   useEffect(() => {
     const tick = () => {
@@ -104,7 +104,7 @@ export default function Home() {
     <section id="inicio" className="hero">
       <Image src="/photos/site-hero-v2.jpg" alt="Priscila e Renato juntos no ensaio" fill sizes="100vw" priority />
       <div className="heroShade" />
-      <div className="heroContent"><p>Chá da Casa Nova</p><h1>Priscila <span>&</span> Renato</h1><div className="line"/><h2>01 • 11 • 2026</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
+      <div className="heroContent"><p>Chá da Casa Nova</p><h1>Priscila <span>&</span> Renato</h1><div className="line"/><h2>05 • 12 • 2026</h2><button onClick={() => go("casal")}>Descubra nossa história <b>↓</b></button></div>
     </section>
 
     <section className="welcome section"><p className="eyebrow">SEJA BEM-VINDO</p><h2>Um novo capítulo da nossa história</h2>
@@ -117,7 +117,7 @@ export default function Home() {
     <section id="casal" className="split section"><div className="photoStack"><Image className="photoMain" src="/photos/site-story.jpg" alt="Priscila e Renato juntos" width={1200} height={1800} sizes="(max-width: 900px) 86vw, 43vw"/><div className="photoAccent"/></div><div className="story"><p className="eyebrow">O CASAL</p><h2>Uma história escrita a dois</h2><p>Algumas histórias começam quando menos se espera. A nossa começou logo após o lockdown da pandemia, quando nossos caminhos se cruzaram em um show.</p><p>Entre música, boas conversas e um simples “até logo”, nasceu uma história que mudaria nossas vidas.</p><p>Depois vieram o primeiro encontro, o companheirismo e a certeza de que sempre haveria alguém para acreditar nos sonhos do outro.</p><p>Enquanto cada um construía o próprio caminho, também nascia um sonho em comum: construir um lar, formar uma família e compartilhar a vida.</p><p>Com o tempo, morar juntos deixou de ser apenas um plano e se tornou o próximo passo natural. No Dia dos Namorados de 2026, um pedido de noivado tornou esse sonho ainda mais especial.</p><p>Agora, chegou a hora de escrever um novo capítulo! E não poderíamos imaginar uma forma melhor de começar essa nova fase do que celebrando ao lado das pessoas que amamos.</p><span className="signature">P &amp; R</span></div></section>
 
     <section id="chadacasanova" className="event"><div className="eventCard"><p className="eyebrow">O GRANDE DIA</p><h2>Chá da casa nova</h2>
-    <div className="dateBadge"><span className="eventMonth" aria-label="Novembro"><span className="eventMonthFull" aria-hidden="true">NOVEMBRO</span><span className="eventMonthShort" aria-hidden="true">NOV</span></span><strong>01</strong><small>2026</small></div><h3>Sábado, às 18 horas</h3>
+    <div className="dateBadge"><span className="eventMonth" aria-label="Novembro"><span className="eventMonthFull" aria-hidden="true">DEZEMBRO</span><span className="eventMonthShort" aria-hidden="true">DEZ</span></span><strong>05</strong><small>2026</small></div><h3>Sábado, às 18 horas</h3>
     <p>Rua Raul de Carvalho, 1148 - Boa Vista<br/>São José do Rio Preto - SP</p>
     <a href="https://maps.app.goo.gl/7bSQhZm7s8hqoEPX6" target="_blank" rel="noreferrer">VER NO MAPA</a></div></section>
 
